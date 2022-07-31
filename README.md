@@ -2,9 +2,9 @@
 
 This extension helps you generate annotations for your bib file. 
 
-## Features
+> Do not use this extension in any product environment since it is under early development. 
 
-> For now this extension is under early development. 
+## Features
 
 - Automatically detect bibtex files.
 - Generate section indices before each section.
