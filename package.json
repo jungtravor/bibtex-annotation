@@ -2,16 +2,17 @@
   "name": "bibtex-annotation",
 	"displayName": "Bibtex Annotation",
 	"description": "Add annotations for .bib files",
-	"publisher": "Zitao Zhou",
+	"publisher": "jungtravor",
 	"author": {
-		"name": "jungtravor"
+		"name": "Zitao Zhou"
 	},
+	"icon": "icon.png",
 	"version": "0.0.2",
 	"engines": {
 		"vscode": "^1.69.0"
 	},
 	"categories": [
-		"Other"
+		"Formatters"
 	],
 	"activationEvents": [
 		"onCommand:bibtex-annotation.format.file.numbers"
