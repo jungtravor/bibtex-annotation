@@ -43,6 +43,10 @@
 			}
 		}
 	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/jungtravor/bibtext-annotation.git"
+	},
 	"scripts": {
 		"lint": "eslint .",
 		"pretest": "npm run lint",
