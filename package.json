@@ -6,7 +6,7 @@
 	"author": {
 		"name": "jungtravor"
 	},
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"engines": {
 		"vscode": "^1.69.0"
 	},
@@ -14,7 +14,7 @@
 		"Other"
 	],
 	"activationEvents": [
-        "onCommand:bibtex-annotation.format.file.numbers"
+		"*"
 	],
 	"main": "./extension.js",
 	"contributes": {
@@ -27,13 +27,14 @@
 		"menus": {
 			"editor/context": [
 				{
-					"when": "editorFocus",
+					"when": "editorFocus && resourceLangId==bibtex",
 					"command": "bibtex-annotation.format.file.numbers",
 					"group": "1_modification"
 				}
 			],
 			"explorer/context": [
 				{
+					"when": "resourceLangId==bibtex",
 					"command": "bibtex-annotation.format.file.numbers",
 					"group": "7_modification"
 				}

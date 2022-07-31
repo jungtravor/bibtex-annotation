@@ -65,16 +65,11 @@ function activate(context) {
 					index = dataStr.search(secRe)
 				}
 				vscode.window.activeTextEditor.edit(editBuilder => {
-					// 从开始到结束，全量替换
 					const end = new vscode.Position(vscode.window.activeTextEditor.document.lineCount + 1, 0);
-					editBuilder.replace(new vscode.Range(new vscode.Position(0, 0), end), resStr);
+					editBuilder.replace(new vscode.Range(new vscode.Position(0, 0), end), resStr+"\n");
 				});
 			})
         });
-        
-        const stats = fs.statSync(filePath);
-        console.log('stats', stats);
-        console.log('isFile', stats.isFile());
 	})
 
 	context.subscriptions.push(disposable);
