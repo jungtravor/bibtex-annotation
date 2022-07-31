@@ -23,16 +23,6 @@ function activate(context) {
 		}
 	}
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with  registerCommand
-	// The commandId parameter must match the command field in package.json
-	let disposable = vscode.commands.registerCommand('bibtex-annotation.helloWorld', function () {
-		// The code you place here will be executed every time your command is executed
-
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from bibtex-annotation!');
-	});
-
     let formatFileNumbers = vscode.commands.registerCommand(commands.format.file.numbers, uri => {
         const filePath = uri.path.substring(1);
         fs.stat(filePath, (err, stats) => {
@@ -43,36 +33,15 @@ function activate(context) {
 			// read file
 			fs.readFile(filePath, (err, data) => {
 				if (err) vscode.window.showErrorMessage(err.message)
-				console.log(data)
-				let dataStr = data.toString()
-				let secRe = /@[A-z]*{/g
-				var countBibs = 0
-				// clean useless content before each bib object
-				var resStr = ""
-				let index = dataStr.search(secRe)
-				while (index >= 0) {
-					countBibs += 1
-					let indexHeader = index
-					index += dataStr.match(secRe)[0].length
-					let countCB = 1
-					while (countCB > 0 && index < dataStr.length) {
-						if (dataStr[index]=='{') countCB += 1
-						if (dataStr[index]=='}') countCB -= 1
-						index += 1
-					}
-					resStr += "\n\n% " + countBibs + "\n\n" + dataStr.substring(indexHeader, index)
-					dataStr = dataStr.substring(index)
-					index = dataStr.search(secRe)
-				}
+				let resStr = formatNumbers(data.toString())
 				vscode.window.activeTextEditor.edit(editBuilder => {
 					const end = new vscode.Position(vscode.window.activeTextEditor.document.lineCount + 1, 0);
-					editBuilder.replace(new vscode.Range(new vscode.Position(0, 0), end), resStr+"\n");
+					editBuilder.replace(new vscode.Range(new vscode.Position(0, 0), end), resStr);
 				});
 			})
         });
 	})
 
-	context.subscriptions.push(disposable);
 	context.subscriptions.push(formatFileNumbers);
 }
 
@@ -82,4 +51,30 @@ function deactivate() {}
 module.exports = {
 	activate,
 	deactivate
+}
+
+/**
+ * @param {string} dataStr
+ */
+function formatNumbers(dataStr) {
+	let secRe = /@[A-z]*{/g
+	var countBibs = 0
+	// clean useless content before each bib object
+	var resStr = ""
+	let index = dataStr.search(secRe)
+	while (index >= 0) {
+		countBibs += 1
+		let indexHeader = index
+		index += dataStr.match(secRe)[0].length
+		let countCB = 1
+		while (countCB > 0 && index < dataStr.length) {
+			if (dataStr[index]=='{') countCB += 1
+			if (dataStr[index]=='}') countCB -= 1
+			index += 1
+		}
+		resStr += "\n\n% " + countBibs + "\n\n" + dataStr.substring(indexHeader, index)
+		dataStr = dataStr.substring(index)
+		index = dataStr.search(secRe)
+	}
+	return resStr + "\n"
 }
