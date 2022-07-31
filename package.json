@@ -14,7 +14,7 @@
 		"Other"
 	],
 	"activationEvents": [
-		"*"
+		"onCommand:bibtex-annotation.format.file.numbers"
 	],
 	"main": "./extension.js",
 	"contributes": {
