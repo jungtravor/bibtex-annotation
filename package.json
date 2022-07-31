@@ -2,7 +2,7 @@
   "name": "bibtex-annotation",
 	"displayName": "Bibtex Annotation",
 	"description": "Add annotations for .bib files",
-	"publisher": "jungtravor",
+	"publisher": "Zitao Zhou",
 	"author": {
 		"name": "jungtravor"
 	},
