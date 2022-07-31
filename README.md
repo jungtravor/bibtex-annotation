@@ -16,6 +16,10 @@ This extension helps you generate annotations for your bib file.
 
 ## Release Notes
 
+### 0.0.3
+
+Icon added.
+
 ### 0.0.2
 
 Add bibtex language support.
