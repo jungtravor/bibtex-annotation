@@ -1,7 +1,11 @@
 {
   "name": "bibtex-annotation",
-	"displayName": "bibtex-annotation",
+	"displayName": "Bibtex Annotation",
 	"description": "Add annotations for .bib files",
+	"publisher": "jungtravor",
+	"author": {
+		"name": "jungtravor"
+	},
 	"version": "0.0.1",
 	"engines": {
 		"vscode": "^1.69.0"
@@ -14,39 +18,33 @@
 	],
 	"main": "./extension.js",
 	"contributes": {
-		"commands": [{
-            "command": "bibtex-annotation.format.file.numbers",
-            "title": "Hello World"
-
-		}],
-		"contributes": {
-			"commands": [
+		"commands": [
+			{
+				"command": "bibtex-annotation.format.file.numbers",
+				"title": "Annotation using numbers"
+			}
+		],
+		"menus": {
+			"editor/context": [
 				{
+					"when": "editorFocus",
 					"command": "bibtex-annotation.format.file.numbers",
-					"title": "Format by numbers"
+					"group": "1_modification"
 				}
 			],
-			"menus": {
-				"editor/context": [
-					{
-						"when": "editorFocus",
-						"command": "bibtex-annotation.format.file.numbers",
-						"group": "1_modification"
-					}
-				],
-				"explorer/context": [
-					{
-						"command": "bibtex-annotation.format.file.numbers",
-						"group": "7_modification"
-					}
-				]
-			}
+			"explorer/context": [
+				{
+					"command": "bibtex-annotation.format.file.numbers",
+					"group": "7_modification"
+				}
+			]
 		}
 	},
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/jungtravor/bibtext-annotation.git"
 	},
+	"homepage": "https://github.com/jungtravor/bibtext-annotation/blob/master/README.md",
 	"scripts": {
 		"lint": "eslint .",
 		"pretest": "npm run lint",
