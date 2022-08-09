@@ -6,6 +6,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## [Unreleased]
 
+## v0.0.4
+
+- Now annotation can be modified in editor directly
+
 ## v0.0.3
 
 - New icon is added.

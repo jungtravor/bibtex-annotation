@@ -15,13 +15,16 @@ function activate(context) {
 	// This line of code will only be executed once when your extension is activated
 	console.log('Congratulations, your extension "bibtex-annotation" is now active!');
 
-	let commands = {
+	const commands = {
 		"format": {
 			"file": {
 				"numbers": 'bibtex-annotation.format.file.numbers'
+			},
+			"editor": {
+				"numbers": 'bibtex-annotation.format.editor.numbers'
 			}
 		}
-	}
+	};
 
     let formatFileNumbers = vscode.commands.registerCommand(commands.format.file.numbers, uri => {
         const filePath = uri.path.substring(1);
@@ -42,7 +45,18 @@ function activate(context) {
         });
 	})
 
+	let formatEditorNumbers = vscode.commands.registerCommand(commands.format.editor.numbers, uri => {
+		const editor = vscode.window.activeTextEditor
+		let dataStr = editor.document.getText()
+		let resStr = formatNumbers(dataStr)
+		vscode.window.activeTextEditor.edit(editBuilder => {
+			const end = new vscode.Position(vscode.window.activeTextEditor.document.lineCount + 1, 0);
+			editBuilder.replace(new vscode.Range(new vscode.Position(0, 0), end), resStr);
+		});
+	})
+
 	context.subscriptions.push(formatFileNumbers);
+	context.subscriptions.push(formatEditorNumbers);
 }
 
 // this method is called when your extension is deactivated

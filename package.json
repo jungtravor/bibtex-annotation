@@ -7,7 +7,7 @@
 		"name": "Zitao Zhou"
 	},
 	"icon": "icon.png",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"engines": {
 		"vscode": "^1.69.0"
 	},
@@ -15,21 +15,26 @@
 		"Formatters"
 	],
 	"activationEvents": [
-		"onCommand:bibtex-annotation.format.file.numbers"
+		"onCommand:disabled-bibtex-annotation.format.file.numbers",
+		"onCommand:bibtex-annotation.format.editor.numbers"
 	],
 	"main": "./extension.js",
 	"contributes": {
 		"commands": [
 			{
 				"command": "bibtex-annotation.format.file.numbers",
-				"title": "Annotation using numbers"
+				"title": "Annotation file with numbers"
+			},
+			{
+				"command": "bibtex-annotation.format.editor.numbers",
+				"title": "Annotation with numbers"
 			}
 		],
 		"menus": {
 			"editor/context": [
 				{
 					"when": "editorFocus && resourceLangId==bibtex",
-					"command": "bibtex-annotation.format.file.numbers",
+					"command": "bibtex-annotation.format.editor.numbers",
 					"group": "1_modification"
 				}
 			],

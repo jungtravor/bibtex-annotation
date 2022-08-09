@@ -16,6 +16,10 @@ This extension helps you generate annotations for your bib file.
 
 ## Release Notes
 
+### v0.0.4
+
+Now annotation can be modified in editor directly
+
 ### 0.0.3
 
 Icon added.
